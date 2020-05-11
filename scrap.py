@@ -1,1 +1,3 @@
-# These are notes and scrap work for Graphs
+# This is a space for scrap work for Graphs week
+
+
