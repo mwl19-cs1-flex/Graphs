@@ -107,16 +107,36 @@ class Graph:
 
 ### Depth First Traversal
 * This can be recursive!
+
 **This uses a Stack**
+
+> Go the deepest you can, then back up the minimum amount, and travel through the graph that way
+
+```
+Add starting node to a stack
+
+While the stack isn't empty:
+    Pop the first vert
+    If that vert isn't visited:
+        Mark as visited
+        Push all its unvisited neighbors to the stack
+```
 
 ### Breadth First Traversal
 * This can NOT be recursive!
+
 **This uses a Queue**
+
+```
+Add starting node to a queue
 
 While the queue isn't empty:
     Dequeue the first vertex
     If that vert isn't visited:
         Mark as visited
         Add its unvisited neighbors to the queue
+```
+
+
 
 # Day Two

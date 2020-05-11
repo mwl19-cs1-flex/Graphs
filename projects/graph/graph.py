@@ -38,23 +38,59 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # use two qs because of weird commands
+        qq = Queue()
+        qq.enqueue(starting_vertex)
+        
+        # Keep track of visited nodes
+        visited = set()
+
+        # Repeat until queue is empty
+        while qq.size() > 0:
+            # Dequeue the first vert
+            vert = qq.dequeue()
+            # If it's not visited:
+            if vert not in visited:
+                print(vert)
+                # Mark as visited
+                visited.add(vert)
+                for next_vert in self.get_neighbors(vert):
+                    qq.enqueue(next_vert)
+
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        st = Stack()
+        st.push(starting_vertex)
 
-    def dft_recursive(self, starting_vertex):
+        visited = set()
+
+        while st.size() > 0:
+            vert = st.pop()
+
+            if vert not in visited:
+                print(vert)
+                visited.add(vert)
+                for next_vert in self.get_neighbors(vert):
+                    st.push(next_vert)
+
+    def dft_recursive(self, starting_vertex, visited=set()):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass  # TODO
+        if starting_vertex in visited:
+            return
+        print(starting_vertex)
+        visited.add(starting_vertex)
+        for next_vert in self.get_neighbors(starting_vertex):
+            self.dft_recursive(next_vert, visited)
+
 
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -72,7 +108,7 @@ class Graph:
         """
         pass  # TODO
 
-    def dfs_recursive(self, starting_vertex, destination_vertex):
+    def dfs_recursive(self, starting_vertex, destination_vertex, path=list(), visited=set()):
         """
         Return a list containing a path from
         starting_vertex to destination_vertex in
@@ -80,7 +116,14 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        # checking if starting vertex is the destination
+        if starting_vertex is destination_vertex:
+            path.append(starting_vertex)
+            visited.add(starting_vertex)
+            return path
+        if starting_vertex in visited:
+            return
+        
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
