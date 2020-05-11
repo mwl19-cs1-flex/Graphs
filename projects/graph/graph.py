@@ -77,13 +77,15 @@ class Graph:
                 for next_vert in self.get_neighbors(vert):
                     st.push(next_vert)
 
-    def dft_recursive(self, starting_vertex, visited=set()):
+    def dft_recursive(self, starting_vertex, visited=None):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
+        if visited is None:
+            visited = set()
         if starting_vertex in visited:
             return
         print(starting_vertex)
@@ -156,21 +158,24 @@ class Graph:
             path = list()
         if visited is None:
             visited = set()
+        if starting_vertex in visited:
+            return False
         if starting_vertex not in visited:
             visited.add(starting_vertex)
-            path.append(starting_vertex)
+            path = path + [starting_vertex]
             if starting_vertex == destination_vertex:
                 return path
             for next_vert in self.get_neighbors(starting_vertex):
                 checker = self.get_neighbors(next_vert)
                 recursion = self.dfs_recursive(next_vert, destination_vertex, path, visited)
-                if checker:
-                    if recursion:
+                if recursion:
+                    recursion
+                    if checker:
                         return recursion
                     else:
                         pass
                 else:
-                    recursion
+                    pass
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
