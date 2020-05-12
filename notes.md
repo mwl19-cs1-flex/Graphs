@@ -140,3 +140,37 @@ While the queue isn't empty:
 
 
 # Day Two
+
+## Breadth First and Depth First Searching
+
+- Breadth first finds the _shortest_ route
+- Depth first finds 
+
+## How to solve a Graph problem
+
+1. Translate the problem into graph terminology
+
+2. Build the graph
+
+3. Traverse it
+
+### Word Ladders Problem
+
+How can you transfer one word into another word?
+
+Rules:
+-Changing one letter at a time
+-Each word must be an actual word
+
+Ex:
+```
+begin_word: hit
+end_word: cog
+
+hit -> hot -> cot -> cog
+
+begin_word: sail
+end_word: boat
+
+sail -> bail -> bait -> 
+```
