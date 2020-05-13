@@ -39,23 +39,40 @@ class Graph:
         beginning from starting_vertex.
         """
         # use two qs because of weird commands
-        qq = Queue()
-        qq.enqueue(starting_vertex)
+        # qq = Queue()
+        # qq.enqueue([starting_vertex])
         
-        # Keep track of visited nodes
-        visited = set()
+        # # Keep track of visited nodes
+        # visited = list()
 
-        # Repeat until queue is empty
+        # # Repeat until queue is empty
+        # while qq.size() > 0:
+        #     # Dequeue the first vert
+        #     vert = qq.dequeue()
+        #     # If it's not visited:
+        #     if vert[-1] not in visited:
+        #         print(vert)
+        #         # Mark as visited
+        #         visited.append(vert[-1])
+        #         for next_vert in self.get_neighbors(vert[-1]):
+        #             new_vert = list(vert)
+        #             new_vert.append(next_vert)
+        #             qq.enqueue(next_vert)
+        
+        # return visited
+        qq = Queue()
+        qq.enqueue([starting_vertex])
+        visited = list()
         while qq.size() > 0:
-            # Dequeue the first vert
-            vert = qq.dequeue()
-            # If it's not visited:
-            if vert not in visited:
-                print(vert)
-                # Mark as visited
-                visited.add(vert)
-                for next_vert in self.get_neighbors(vert):
-                    qq.enqueue(next_vert)
+            path = qq.dequeue()
+            if path[-1] not in visited:
+                visited.append(path[-1]) 
+                for next_vert in self.get_neighbors(path[-1]):
+                    new_path = list(path)
+                    new_path.append(next_vert)
+                    qq.enqueue(new_path)
+                    
+        return visited
 
 
     def dft(self, starting_vertex):

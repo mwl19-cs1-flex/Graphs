@@ -40,7 +40,7 @@ class Graph:
         """
         # use two qs because of weird commands
         qq = Queue()
-        qq.enqueue(starting_vertex)
+        qq.enqueue([starting_vertex])
         
         # Keep track of visited nodes
         visited = set()
@@ -50,12 +50,14 @@ class Graph:
             # Dequeue the first vert
             vert = qq.dequeue()
             # If it's not visited:
-            if vert not in visited:
-                print(vert)
+            if vert[-1] not in visited:
+                print(vert[-1])
                 # Mark as visited
-                visited.add(vert)
-                for next_vert in self.get_neighbors(vert):
-                    qq.enqueue(next_vert)
+                visited.add(vert[-1])
+                for next_vert in self.get_neighbors(vert[-1]):
+                    new_path = list(vert)
+                    new_path.append(next_vert)
+                    qq.enqueue(new_path)
 
 
     def dft(self, starting_vertex):
@@ -115,9 +117,9 @@ class Graph:
                     path.append(vert)
                     return path
                 visited.add(vert)
-                path.append(vert)
                 for next_vert in self.get_neighbors(vert):
                     if destination_vertex in self.get_neighbors(next_vert):
+                        path.append(vert)
                         qq.enqueue(next_vert)
                     else:
                         qq.enqueue(next_vert)
@@ -270,5 +272,5 @@ if __name__ == '__main__':
         [1, 2, 4, 6]
         [1, 2, 4, 7, 6]
     '''
-    # print(graph.dfs(1, 6))
-    # print(graph.dfs_recursive(1, 6))
+    print(graph.dfs(1, 7))
+    # print(graph.dfs_recursive(1, 7))
